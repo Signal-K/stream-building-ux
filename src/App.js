@@ -202,9 +202,7 @@ const Feed = memo(({ content, offsetLeft, sidebarTop, isResizing, setSeed  }) =>
   )
 }, )
 
-
-// obj of streams: seeds
-const sampleStreams = [
+const sampleStreams = [ // obj of streams: seeds
   { name: 'Trails For Thought', description: "Tools we shape and the tools that shape us", seeds: [{ name: 'Alex Xu', kind: 'account' }, { name: 'Tana Inc.', kind: 'entity' }] },
   { name: 'Human In The Loop', seeds: ['Andy Matuschak', 'CMU_HCI'] },
   { name: 'Biochemistry Geeks', seeds: [''] }

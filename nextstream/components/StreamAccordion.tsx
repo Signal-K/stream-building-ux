@@ -60,51 +60,75 @@ const InlineEntity = ({ name, kind }: { name: any, kind: any }) => {
 }
 
 
-const AccordionDetails = ({ refHeight, seeds, isOpen }: { refHeight: any, seeds: any, isOpen: any }) => {
-
-    const targetHeight = refHeight - (2 * (32 + 4) + 2)
-    const { minHeight, height, visibility } = useSpring({
-        from: { minHeight: 0, height: 0, visibility: 0, y: 0 },
-        to: {
-            minHeight: isOpen ? targetHeight : 0,
-            height: isOpen? targetHeight: 0,
-            visibility: isOpen ? 1 : 0,
-        },
-        config: { friction: 16 },
-    })
-
+interface AccordionDetailsProps {
+    refHeight: number;
+    seeds: string[];
+    isOpen: boolean;
+  }
+  
+  const AccordionDetails = ({ refHeight, seeds, isOpen }: AccordionDetailsProps) => {
+    const targetHeight = refHeight - (2 * (32 + 4) + 2);
+    const { minHeight, height, visibility }: { minHeight: any, height: any, visibility: any } = useSpring({
+      from: { minHeight: 0, height: 0, visibility: 0, y: 0 },
+      to: {
+        minHeight: isOpen ? targetHeight : 0,
+        height: isOpen ? targetHeight : 0,
+        visibility: isOpen ? 1 : 0,
+      },
+      config: { friction: 16 },
+    });
+  
     return (
-        <animated.div
-            className={"overflow-y-scroll w-full flex flex-col items-center"}
-            style={{ minHeight }}
-        >
-            {isOpen && (
-                <animated.div className="w-full " style={{ visibility, height }}>
-                    {/* <div className="sticky top-2 rounded-lg  bg-slate-300/20 h-8 w-full" /> */}
-                    <div className='my-2 mx-2 flex flex-col gap-1'>
-                        {seeds.map(e => <InlineEntity name={e} kind={"person"} />)}
-                    </div>
-            </animated.div>
-            )}
+      <animated.div className="overflow-y-scroll w-full flex flex-col items-center" style={{ minHeight }}>
+        {isOpen && (
+          <animated.div className="w-full" style={{ visibility, height }}>
+            {/* <div className="sticky top-2 rounded-lg bg-slate-300/20 h-8 w-full" /> */}
+            <div className="my-2 mx-2 flex flex-col gap-1">
+              {seeds.map((e) => (
+                <InlineEntity key={e} name={e} kind={"person"} />
+              ))}
+            </div>
+          </animated.div>
+        )}
+      </animated.div>
+    );
+  };
 
-
-
-        </animated.div>
-    )
-}
-
-const Accordion = ({ height, streamName, currentStream, setStream, lists, seeds }: { height: any, streamName: any, currentStream: any, setStream: any, lists: any, seeds: any, }) => {
-
+interface AccordionProps {
+    height: number;
+    streamName: string;
+    currentStream: string;
+    setStream: (streamName: string) => void;
+    lists: any;
+    seeds: any;
+  }
+  
+  const Accordion: React.FC<AccordionProps> = ({
+    height,
+    streamName,
+    currentStream,
+    setStream,
+    lists,
+    seeds,
+  }) => {
     const isOpen = currentStream === streamName;
-
+  
     return (
-        <div>
-            <AccordionSummary streamName={streamName} isOpen={isOpen} setStream={setStream} />
-            <AccordionDetails isOpen={isOpen} refHeight={height} streamName={streamName} seeds={seeds} />
-        </div>
-
-    )
-}
+      <div>
+        <AccordionSummary
+          streamName={streamName}
+          isOpen={isOpen}
+          setStream={setStream}
+        />
+        <AccordionDetails
+          isOpen={isOpen}
+          refHeight={height}
+          //streamName={streamName}
+          seeds={seeds}
+        />
+      </div>
+    );
+  };
 
 type StreamAccordionProps = {
     streams: any;

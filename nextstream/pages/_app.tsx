@@ -1,6 +1,6 @@
 import '@/styles/globals.css';
 import type AppProps from 'next/app';
-import styles from '../styles/Home.module.css';
+//import styles from '../styles/Home.module.css';
 
 import { Rnd } from 'react-rnd';
 import debounce from 'lodash.debounce';
@@ -11,7 +11,6 @@ import { VariableSizeGrid } from 'react-window';
 import { left } from '@popperjs/core';
 import useMeasure from 'react-use-measure';
 
-
-export default function App({ Component, pageProps }: AppProps) {
+export default function App({ Component, pageProps }: { Component: any, pageProps: any }) {
   return <Component {...pageProps} />
 }

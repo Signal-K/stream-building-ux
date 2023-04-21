@@ -195,3 +195,50 @@ body {
 .passive {
   opacity: 0.5;
 }
+
+
+
+@layer base {
+  h1 {
+    @apply text-xl tracking-tightest leading-6
+  }
+  h2 {
+    @apply text-lg tracking-tightest leading-5
+  }
+  h3 {
+    @apply text-base tracking-tighter leading-4
+  }
+  p {
+    @apply text-sm tracking-normal leading-4 font-normal
+  }
+}
+
+@layer components {
+  .small {
+    @apply text-xs tracking-wide leading-4 font-medium
+  }
+
+  .caption {
+    @apply text-2xs tracking-wider leading-4 font-semibold uppercase 
+  }
+
+  .card {
+    @apply border bg-white border-white/95 shadow-subdue rounded-md duration-300 p-3
+  }
+
+
+}
+
+body {
+  margin: 0;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
